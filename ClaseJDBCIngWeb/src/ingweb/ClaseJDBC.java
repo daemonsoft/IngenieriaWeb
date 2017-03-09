@@ -15,10 +15,13 @@ import java.sql.SQLException;
 public class ClaseJDBC {
 
 	public static void main(String[] args) {
-		
+
 		consultarCiudades();
 	}
 
+	/**
+	 * 
+	 */
 	public static void consultarCiudades() {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -36,7 +39,7 @@ public class ClaseJDBC {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				rs.close();
 				ps.close();
