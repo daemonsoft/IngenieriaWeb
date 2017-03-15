@@ -22,6 +22,8 @@ import com.udea.ingweb.exception.SuperException;
  */
 public class CiudadDAOImpl implements CiudadDAOInterface {
 	/**
+	 * Implementación del método de la interfaz para obtener la lista de 
+	 * ciudades 
 	 * @throws SuperException
 	 */
 	@Override
@@ -31,21 +33,23 @@ public class CiudadDAOImpl implements CiudadDAOInterface {
 		ResultSet rs = null;
 		List<Ciudad> ciudades = new ArrayList<>();
 		try {
-
-			conn = DataSource.getConnection();
+			//Se obtiene una conexion a la base de datos
+			conn = DataSource.getSingleConnection();
+			//Se crea la consulta
 			ps = conn.prepareStatement("select * from ciudades");
 			rs = ps.executeQuery();
+			//Se guardan en la lista las ciudades en la consulta para retornarlas
 			while (rs.next()) {
 				Ciudad ciudad = new Ciudad();
-				ciudad.setCodigo(Long.parseLong(rs.getString("codigo")));
+				ciudad.setCodigo(rs.getLong("codigo"));
 				ciudad.setNombre(rs.getString("Nombre"));
 				ciudad.setCodigoArea(rs.getString("codigoArea"));
 				ciudades.add(ciudad);
 			}
-			conn.close();
 		} catch (SQLException e) {
 			throw new SuperException("No se pudo hacer la consulta");
 		} finally {
+			//Se cierran las conexiones
 			try {
 				if (rs != null) {
 					rs.close();
@@ -57,10 +61,56 @@ public class CiudadDAOImpl implements CiudadDAOInterface {
 					conn.close();
 				}
 			} catch (SQLException e) {
+				//Se lanza una exepción en caso de error
 				throw new SuperException("No se pudo cerrar la conexión");
 			}
 		}
 		return ciudades;
+	}
+	/**
+	 * Implementación del método de la interfaz para obtener una ciudad
+	 */
+	@Override
+	public Ciudad obtener(Long codigo) throws SuperException {
+		Ciudad ciudad = null;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			//Se obtiene una conexion a la base de datos
+			conn = DataSource.getSingleConnection();
+			//Se crea la consulta
+			ps = conn.prepareStatement("select * from ciudades where codigo=?");
+			ps.setLong(1, codigo);
+			rs = ps.executeQuery();
+			//Si existe la ciudad se obtienen los campos
+			if (rs.next()) {
+				ciudad = new Ciudad();
+				ciudad.setCodigo(rs.getLong("codigo"));
+				ciudad.setNombre(rs.getString("Nombre"));
+				ciudad.setCodigoArea(rs.getString("codigoArea"));
+				
+			}
+		} catch (SQLException e) {
+			throw new SuperException("No se pudo hacer la consulta");
+		} finally {
+			//Se cierran las conexiones
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				//Se lanza una exepción en caso de error
+				throw new SuperException("No se pudo cerrar la conexión");
+			}
+		}
+		return ciudad;
 	}
 
 }
