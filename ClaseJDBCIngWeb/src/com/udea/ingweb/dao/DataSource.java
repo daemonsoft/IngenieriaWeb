@@ -15,34 +15,34 @@ import com.udea.ingweb.exception.SuperException;
  *
  */
 public class DataSource {
-	private static Connection conn;
-	private DataSource(){
-		conn = null;
+	private static Connection conn = null;
+
+	private DataSource() {
 	}
+
 	/**
 	 * Metodo que retorna la conexión a la base de datos
+	 * 
 	 * @return
 	 * @throws SuperException
 	 */
 	public static Connection getSingleConnection() throws SuperException {
 
 		try {
-			
-			
-			if (conn == null){
-				//Carga del driver 
+			if (null == conn || conn.isClosed()) {
+				// Carga del driver
 				Class.forName("com.mysql.jdbc.Driver");
-				//Se establece la conexión
+				// Se establece la conexión
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/clase", "root", "root");
-	        }
-			
+			}
+
 		} catch (ClassNotFoundException e) {
-			//Se lanza si no se encuentra la libreria que contiene el driver
+			// Se lanza si no se encuentra la libreria que contiene el driver
 			throw new SuperException("Driver no encontrado");
 		} catch (SQLException e) {
-			//Se lanza si no se establece una conexión
+			// Se lanza si no se establece una conexión
 			throw new SuperException("No se pudo establecer conexión");
-		} 
+		}
 		return conn;
 
 	}
