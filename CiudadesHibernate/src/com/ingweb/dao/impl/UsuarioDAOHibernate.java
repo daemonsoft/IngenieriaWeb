@@ -17,7 +17,6 @@ public class UsuarioDAOHibernate implements UsuarioDAOInterface {
 	public Usuario obtener(String login) throws SuperException {
 		Usuario usuario = null;
 		Session session = null;
-		Criteria criteria = null;
 		try {
 			// Se obtiene una sesión a la base de datos
 			session = DataSource.getInstance().getSession();
@@ -25,7 +24,7 @@ public class UsuarioDAOHibernate implements UsuarioDAOInterface {
 			// Si existe la ciudad se obtiene
 			usuario = (Usuario) session.get(Usuario.class, login);
 		} catch (HibernateException e) {
-			throw new SuperException("No se pudo hacer la consulta de usuario");
+			throw new SuperException("No se pudo hacer la consulta de usuario", e);
 		} finally {
 			// Se cierra la sesión
 			if (null != session) {

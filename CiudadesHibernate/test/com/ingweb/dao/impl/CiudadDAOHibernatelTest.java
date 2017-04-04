@@ -24,7 +24,9 @@ public class CiudadDAOHibernatelTest {
 			//
 			assertTrue(lista.size() > 0);
 		} catch (SuperException e) {
+			e.printStackTrace();
 			fail(e.getMessage());
+			
 		}
 	}
 	
@@ -40,6 +42,7 @@ public class CiudadDAOHibernatelTest {
 			ciudad = ciudadDAOImpl.obtener(1L);
 			assertTrue(ciudad != null);
 		} catch (SuperException e) {
+			e.printStackTrace();
 			fail(e.getMessage());
 		}
 	}

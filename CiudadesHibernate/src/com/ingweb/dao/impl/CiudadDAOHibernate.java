@@ -45,7 +45,7 @@ public class CiudadDAOHibernate implements CiudadDAOInterface {
 			ciudades = criteria.list();
 
 		} catch (HibernateException e) {
-			throw new SuperException("No se pudo realizar la consulta de las ciudades");
+			throw new SuperException("No se pudo realizar la consulta de las ciudades", e);
 
 		} finally {
 			if (null != session) {
@@ -62,7 +62,6 @@ public class CiudadDAOHibernate implements CiudadDAOInterface {
 	public Ciudad obtener(Long codigo) throws SuperException {
 		Ciudad ciudad = null;
 		Session session = null;
-		Criteria criteria = null;
 		try {
 			// Se obtiene una sesión a la base de datos
 			session = DataSource.getInstance().getSession();
@@ -70,7 +69,7 @@ public class CiudadDAOHibernate implements CiudadDAOInterface {
 			// Si existe la ciudad se obtiene
 			ciudad = (Ciudad) session.get(Ciudad.class, codigo);
 		} catch (HibernateException e) {
-			throw new SuperException("No se pudo hacer la consulta de ciudad");
+			throw new SuperException("No se pudo hacer la consulta de ciudad", e);
 		} finally {
 			// Se cierra la sesión
 			if (null != session) {
@@ -90,12 +89,12 @@ public class CiudadDAOHibernate implements CiudadDAOInterface {
 		try {
 			// Se obtiene una sesión a la base de datos
 			session = DataSource.getInstance().getSession();
-			tx = session.getTransaction();
+			tx = session.beginTransaction();
 			// Se guarda la ciudad y se hace la transacción
 			session.save(ciudad);
 			tx.commit();
 		} catch (HibernateException e) {
-			throw new SuperException("No se pudo guardar la ciudad");
+			throw new SuperException("No se pudo guardar la ciudad", e);
 		} finally {
 			// se desacen los cambios
 			if (null != tx) {

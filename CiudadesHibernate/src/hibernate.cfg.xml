@@ -13,5 +13,7 @@
 		<mapping resource="com/ingweb/dto/Ciudad.hbm.xml" />
 		<mapping resource="com/ingweb/dto/Rol.hbm.xml" />
 		<mapping resource="com/ingweb/dto/Usuario.hbm.xml" />
+		<mapping resource="com/ingweb/dto/Cliente.hbm.xml" />
+		<mapping resource="com/ingweb/dto/Direccion.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
