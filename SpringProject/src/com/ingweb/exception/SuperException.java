@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 /**
  * Clase que hereda de Exception para manejar las excepciones internamente
  * 
- * @author daemonsoft
+ * @author William Hincapie Medina - daemonsoft@gmail.com
  * @since 1.8
  * @version 1.0
  *

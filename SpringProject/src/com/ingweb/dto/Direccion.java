@@ -1,5 +1,10 @@
 package com.ingweb.dto;
-
+/**
+ * 
+ * @author William Hincapie Medina - daemonsoft@gmail.com
+ * @since 1.8
+ * @version 1.0
+ */
 public class Direccion {
 
 	private DireccionId id;

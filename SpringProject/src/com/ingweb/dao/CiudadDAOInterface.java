@@ -7,7 +7,7 @@ import com.ingweb.exception.SuperException;
 
 /**
  * Interface de la ciudad 
- * @author daemonsoft
+ * @author William Hincapie Medina - daemonsoft@gmail.com
  * @since 1.8
  * @version 1.0
  */

@@ -38,4 +38,13 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 		<property name="dataSource" ref="springdatasource"></property>
 	</bean>
+	<bean id="ciudadDAO" class="com.ingweb.dao.impl.CiudadDAOHibernate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="clienteDAO" class="com.ingweb.dao.impl.ClienteDAOHibernate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="usuarioDAO" class="com.ingweb.dao.impl.UsuarioDAOHibernate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

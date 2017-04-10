@@ -1,7 +1,12 @@
 package com.ingweb.dto;
 
 import java.io.Serializable;
-
+/**
+ * 
+ * @author William Hincapie Medina - daemonsoft@gmail.com
+ * @since 1.8
+ * @version 1.0
+ */
 public class DireccionId implements Serializable {
 
 	/**
