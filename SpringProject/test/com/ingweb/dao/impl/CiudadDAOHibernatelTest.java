@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ingweb.dao.CiudadDAOInterface;
 import com.ingweb.dto.Ciudad;
+import com.ingweb.dto.Cliente;
 import com.ingweb.exception.SuperException;
 
 import javassist.ClassPath;
@@ -44,7 +45,6 @@ public class CiudadDAOHibernatelTest {
 			//
 			assertTrue(lista.size() > 0);
 		} catch (SuperException e) {
-			e.printStackTrace();
 			fail(e.getMessage());
 
 		}
@@ -60,8 +60,24 @@ public class CiudadDAOHibernatelTest {
 			ciudad = ciudadDAOImpl.obtener(1L);
 			assertTrue(ciudad != null);
 		} catch (SuperException e) {
-			e.printStackTrace();
 			fail(e.getMessage());
 		}
+	}
+
+	/**
+	 * Prueba que verifica la conexión a la base de datos almacenando una ciudad
+	 */
+	@Test
+	public void guardarTest() {
+		Ciudad ciudad = new Ciudad();
+		ciudad.setCodigo(999L);
+		ciudad.setNombre("Nombre de la ciudad");
+		try {
+			ciudadDAOImpl.guardar(ciudad);
+			assertTrue(null != ciudadDAOImpl.obtener(999L));
+		} catch (SuperException e) {
+			fail(e.getMessage());
+		}
+
 	}
 }

@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ingweb.dao.ClienteDAOInterface;
 import com.ingweb.dao.UsuarioDAOInterface;
+import com.ingweb.dto.Ciudad;
 import com.ingweb.dto.Cliente;
 import com.ingweb.dto.Usuario;
 import com.ingweb.exception.SuperException;
@@ -38,9 +39,23 @@ public class ClienteDAOHibernateTest {
 		List<Cliente> lista = null;
 		try {
 			lista = clienteDAO.obtener();
-			//
 			assertTrue(lista.size() > 0);
 		} catch (SuperException e) {
+			fail(e.getMessage());
+		}
+	}
+	
+	/**
+	 * Prueba que verifica la conexión a la base de datos consultando un cliente
+	 */
+	@Test
+	public void obtenerClienteTest() {
+		Cliente cliente = null;
+		try {
+			cliente = clienteDAO.obtener("1111");
+			assertTrue(cliente != null);
+		} catch (SuperException e) {
+			e.printStackTrace();
 			fail(e.getMessage());
 		}
 	}
@@ -54,7 +69,7 @@ public class ClienteDAOHibernateTest {
 		Usuario usuario = null;
 		try {
 			cliente = new Cliente();
-			cliente.setCedula("1234");
+			cliente.setCedula("1233");
 			cliente.setNombres("un nombre");
 			cliente.setApellidos("apellidos");
 			cliente.setEmail("email@gmail.com");

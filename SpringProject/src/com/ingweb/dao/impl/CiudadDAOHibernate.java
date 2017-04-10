@@ -53,7 +53,7 @@ public class CiudadDAOHibernate implements CiudadDAOInterface {
 			ciudades = criteria.list();
 
 		} catch (HibernateException e) {
-			throw new SuperException("No se pudo realizar la consulta de las ciudades", e);
+			throw new SuperException("No se pudo realizar la consulta de las ciudades", e.getCause());
 		}
 		return ciudades;
 	}
@@ -72,7 +72,7 @@ public class CiudadDAOHibernate implements CiudadDAOInterface {
 			// Si existe la ciudad se obtiene
 			ciudad = (Ciudad) session.get(Ciudad.class, codigo);
 		} catch (HibernateException e) {
-			throw new SuperException("No se pudo hacer la consulta de ciudad", e);
+			throw new SuperException("No se pudo hacer la consulta de ciudad", e.getCause());
 		}
 		return ciudad;
 	}
@@ -89,7 +89,7 @@ public class CiudadDAOHibernate implements CiudadDAOInterface {
 			// Se guarda la ciudad y se hace la transacción
 			session.save(ciudad);
 		} catch (HibernateException e) {
-			throw new SuperException("No se pudo guardar la ciudad", e);
+			throw new SuperException("No se pudo guardar la ciudad", e.getCause());
 		}
 	}
 

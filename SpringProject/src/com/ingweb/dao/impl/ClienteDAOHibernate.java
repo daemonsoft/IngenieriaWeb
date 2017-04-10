@@ -50,7 +50,7 @@ public class ClienteDAOHibernate implements ClienteDAOInterface {
 			clientes = criteria.list();
 
 		} catch (HibernateException e) {
-			throw new SuperException("No se pudo realizar la consulta de las ciudades", e);
+			throw new SuperException("No se pudo realizar la consulta de las ciudades", e.getCause());
 
 		}
 		return clientes;
@@ -68,7 +68,7 @@ public class ClienteDAOHibernate implements ClienteDAOInterface {
 			cliente = (Cliente) session.get(Cliente.class, cedula);
 
 		} catch (HibernateException e) {
-			throw new SuperException("No se pudo realizar la consulta del cliente", e);
+			throw new SuperException("No se pudo realizar la consulta del cliente", e.getCause());
 
 		}
 		return cliente;
@@ -84,8 +84,7 @@ public class ClienteDAOHibernate implements ClienteDAOInterface {
 			// Se guarda el cliente y se hace la transacción
 			session.save(cliente);
 		} catch (HibernateException e) {
-			e.printStackTrace();
-			throw new SuperException("No se pudo guardar el cliente", e);
+			throw new SuperException("No se pudo guardar el cliente", e.getCause());
 		}
 
 	}

@@ -46,7 +46,7 @@ public class UsuarioDAOHibernate implements UsuarioDAOInterface {
 			// Si existe la ciudad se obtiene
 			usuario = (Usuario) session.get(Usuario.class, login);
 		} catch (HibernateException e) {
-			throw new SuperException("No se pudo hacer la consulta de usuario", e);
+			throw new SuperException("No se pudo hacer la consulta de usuario", e.getCause());
 		}
 		return usuario;
 	}
@@ -70,7 +70,7 @@ public class UsuarioDAOHibernate implements UsuarioDAOInterface {
 			usuarios = criteria.list();
 
 		} catch (HibernateException e) {
-			throw new SuperException("No se pudo realizar la consulta de las ciudades", e);
+			throw new SuperException("No se pudo realizar la consulta de las ciudades", e.getCause());
 
 		}
 		return usuarios;
@@ -86,8 +86,7 @@ public class UsuarioDAOHibernate implements UsuarioDAOInterface {
 			// Se guarda el cliente y se hace la transacción
 			session.save(usuario);
 		} catch (HibernateException e) {
-			e.printStackTrace();
-			throw new SuperException("No se pudo guardar el usuario", e);
+			throw new SuperException("No se pudo guardar el usuario", e.getCause());
 		}
 	}
 }
