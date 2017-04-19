@@ -47,4 +47,10 @@
 	<bean id="usuarioDAO" class="com.ingweb.dao.impl.UsuarioDAOHibernate">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="clienteBusiness" class="com.ingweb.business.ClienteBusiness">
+		<property name="clienteDAOHibernate" ref="clienteDAO"></property>
+	</bean>
+	<bean id="usuarioBusiness" class="com.ingweb.business.UsuarioBusiness">
+		<property name="usuarioDAOHibernate" ref="usuarioDAO"></property>
+	</bean>
 </beans>
