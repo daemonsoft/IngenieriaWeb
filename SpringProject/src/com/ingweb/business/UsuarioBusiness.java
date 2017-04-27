@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.type.TrueFalseType;
 
+import com.ingweb.dao.UsuarioDAOInterface;
 import com.ingweb.dao.impl.UsuarioDAOHibernate;
 import com.ingweb.dto.Rol;
 import com.ingweb.dto.Usuario;
@@ -17,13 +18,13 @@ import com.ingweb.exception.SuperException;
  * @version 1.0
  */
 public class UsuarioBusiness {
-	private UsuarioDAOHibernate usuarioDAOHibernate;
+	private UsuarioDAOInterface usuarioDAOHibernate;
 
-	public UsuarioDAOHibernate getUsuarioDAOHibernate() {
+	public UsuarioDAOInterface getUsuarioDAOHibernate() {
 		return usuarioDAOHibernate;
 	}
 
-	public void setUsuarioDAOHibernate(UsuarioDAOHibernate usuarioDAOHibernate) {
+	public void setUsuarioDAOHibernate(UsuarioDAOInterface usuarioDAOHibernate) {
 		this.usuarioDAOHibernate = usuarioDAOHibernate;
 	}
 
@@ -110,7 +111,7 @@ public class UsuarioBusiness {
 	 *         ingresadas, false de lo contrario
 	 * @throws SuperException
 	 */
-	public boolean validarLogin(String login, String contrasena) throws SuperException {
+	public Usuario validarLogin(String login, String contrasena) throws SuperException {
 		if (null == contrasena || "".equals(contrasena)) {
 			throw new SuperException("La contraseña no puede estar vacia.");
 		}
@@ -119,11 +120,11 @@ public class UsuarioBusiness {
 		}
 		Usuario usuario = usuarioDAOHibernate.obtener(login);
 		if (null == usuario) {
-			return Boolean.FALSE;
+			throw new SuperException("Usuario o contraseña incorrecta.");
 		} else if (usuario.getContrasena().equals(contrasena)) {
-			return Boolean.TRUE;
+			return usuario;
 		} else {
-			return Boolean.FALSE;
+			throw new SuperException("Usuario o contraseña incorrecta.");
 		}
 
 	}

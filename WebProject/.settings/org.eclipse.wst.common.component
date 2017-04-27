@@ -2,6 +2,9 @@
     <wb-module deploy-name="WebProject">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="SpringProject.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SpringProject/SpringProject">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="WebProject"/>
         <property name="java-output-path" value="/WebProject/build/classes"/>
     </wb-module>

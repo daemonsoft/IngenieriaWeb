@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>springconfiguration.xml</config>
+		<config>src/springconfiguration.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

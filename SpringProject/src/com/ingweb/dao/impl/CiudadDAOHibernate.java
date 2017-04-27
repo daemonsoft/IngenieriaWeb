@@ -7,6 +7,8 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.ingweb.dao.CiudadDAOInterface;
 import com.ingweb.dto.Ciudad;
 import com.ingweb.exception.SuperException;
@@ -19,6 +21,7 @@ import com.ingweb.exception.SuperException;
  * @version 1.0
  *
  */
+@Transactional
 public class CiudadDAOHibernate implements CiudadDAOInterface {
 
 	private SessionFactory sessionFactory;
@@ -39,7 +42,7 @@ public class CiudadDAOHibernate implements CiudadDAOInterface {
 	 */
 	@Override
 	public List<Ciudad> obtener() throws SuperException {
-		List<Ciudad> ciudades = new ArrayList<>();
+		List<Ciudad> ciudades = new ArrayList<Ciudad>();
 		Session session = null;
 		Criteria criteria = null;
 		try {

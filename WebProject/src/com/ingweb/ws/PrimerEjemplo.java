@@ -24,9 +24,9 @@ public class PrimerEjemplo {
 		return "Otro " + name;
 	}
 	
-	@POST
+	@GET
 	@Path("otro/{name}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_HTML)
 	public String otroSaludoPath(@PathParam("name") String name) {
 		return "Otro " + name;
 	}

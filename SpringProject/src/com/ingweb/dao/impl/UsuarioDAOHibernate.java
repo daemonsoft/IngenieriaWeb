@@ -8,6 +8,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ingweb.exception.SuperException;
 import com.ingweb.dao.UsuarioDAOInterface;
@@ -20,6 +21,7 @@ import com.ingweb.dto.Usuario;
  * @since 1.8
  * @version 1.0
  */
+@Transactional
 public class UsuarioDAOHibernate implements UsuarioDAOInterface {
 
 	private SessionFactory sessionFactory;
@@ -46,6 +48,7 @@ public class UsuarioDAOHibernate implements UsuarioDAOInterface {
 			// Si existe la ciudad se obtiene
 			usuario = (Usuario) session.get(Usuario.class, login);
 		} catch (HibernateException e) {
+			e.printStackTrace();
 			throw new SuperException("No se pudo hacer la consulta de usuario", e.getCause());
 		}
 		return usuario;
@@ -53,7 +56,7 @@ public class UsuarioDAOHibernate implements UsuarioDAOInterface {
 
 	@Override
 	public List<Usuario> obtener() throws SuperException {
-		List<Usuario> usuarios = new ArrayList<>();
+		List<Usuario> usuarios = new ArrayList<Usuario>();
 		Session session = null;
 		Criteria criteria = null;
 		try {

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.ingweb.dao.ClienteDAOInterface;
+import com.ingweb.dao.UsuarioDAOInterface;
 import com.ingweb.dao.impl.ClienteDAOHibernate;
 import com.ingweb.dao.impl.UsuarioDAOHibernate;
 import com.ingweb.dto.Cliente;
@@ -19,22 +21,22 @@ import com.ingweb.exception.SuperException;
  * @version 1.0
  */
 public class ClienteBusiness {
-	private ClienteDAOHibernate clienteDAOHibernate;
-	private UsuarioDAOHibernate usuarioDAOHibernate;
+	private ClienteDAOInterface clienteDAOHibernate;
+	private UsuarioDAOInterface usuarioDAOHibernate;
 
-	public ClienteDAOHibernate getClienteDAOHibernate() {
+	public ClienteDAOInterface getClienteDAOHibernate() {
 		return clienteDAOHibernate;
 	}
 
-	public void setClienteDAOHibernate(ClienteDAOHibernate clienteDAOHibernate) {
+	public void setClienteDAOHibernate(ClienteDAOInterface clienteDAOHibernate) {
 		this.clienteDAOHibernate = clienteDAOHibernate;
 	}
 	
-	public UsuarioDAOHibernate getUsuarioDAOHibernate() {
+	public UsuarioDAOInterface getUsuarioDAOHibernate() {
 		return usuarioDAOHibernate;
 	}
 
-	public void setUsuarioDAOHibernate(UsuarioDAOHibernate usuarioDAOHibernate) {
+	public void setUsuarioDAOHibernate(UsuarioDAOInterface usuarioDAOHibernate) {
 		this.usuarioDAOHibernate = usuarioDAOHibernate;
 	}
 

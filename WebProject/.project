@@ -3,6 +3,7 @@
 	<name>WebProject</name>
 	<comment></comment>
 	<projects>
+		<project>SpringProject</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

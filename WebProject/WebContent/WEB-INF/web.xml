@@ -5,7 +5,8 @@
 	id="WebApp_ID" version="3.0">
 	<servlet>
 		<servlet-name>ServiciosREST</servlet-name>
-		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+		<!-- servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class -->
 		<init-param>
 			<param-name>com.sun.jersey.config.property.packages</param-name>
 			<param-value>com.ingweb.ws</param-value>
@@ -17,4 +18,13 @@
 		<servlet-name>ServiciosREST</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:springconfiguration.xml</param-value>
+	</context-param>
+
 </web-app>

@@ -8,6 +8,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ingweb.dao.ClienteDAOInterface;
 import com.ingweb.dto.Cliente;
@@ -19,6 +20,7 @@ import com.ingweb.exception.SuperException;
  * @since 1.8
  * @version 1.0
  */
+@Transactional
 public class ClienteDAOHibernate implements ClienteDAOInterface {
 
 	private SessionFactory sessionFactory;
@@ -33,7 +35,7 @@ public class ClienteDAOHibernate implements ClienteDAOInterface {
 
 	@Override
 	public List<Cliente> obtener() throws SuperException {
-		List<Cliente> clientes = new ArrayList<>();
+		List<Cliente> clientes = new ArrayList<Cliente>();
 		Session session = null;
 		Criteria criteria = null;
 		try {
