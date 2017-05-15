@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	function actualizar(elem) {
+		var nombre = elem.value;
+		var salida = document.getElementById("salida");
+		salida.innerHTML = nombre;
+	}
+</script>
+<body>
+	<div>Ingrese su nombre</div>
+	<input onkeyup="actualizar(this)" id="nombre" type="text" placeholder="Nombre" />
+
+	<div>
+		Nombre digitado:
+		<div id="salida"></div>
+	</div>
+</body>
+</html>
